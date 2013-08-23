@@ -86,8 +86,17 @@
 </div>
 
 <div class="line">
+	<h4> Tag this Item </h4>
+	<div class="span1 unit left"></div>
+		<label for="ItemTags"><#ERROR name="ItemTags"><span>Comma separated list of tags to be assigned to this Item - e.g. Week 4.1, Assignment 3. Students can filter by these tags<span>		
+                <textarea id="ItemTags" name="ItemTags" tabindex="55"><#PARAM name="ItemTags"/></textarea><br />
+		</label>
+	</div>
+</div>
+
+<div class="line">
 	<div class="span1 unit">
-		<input id="None" type="checkbox" checked="checked" <#ITEM field="SELECTED" Identifier="SupplyMethod" Value="None"> name="SupplyMethod" value="None" /> <label class="lib-inline">No change to the Reserve Item</label>
+		<input id="None" type="checkbox" checked="checked" <#ITEM field="SELECTED" Identifier="SupplyMethod" Value="None"> name="SupplyMethod" value="None" /> <label class="lib-inline">Don't change pickup or delivery location</label>
 	</div>
 </div>
 
