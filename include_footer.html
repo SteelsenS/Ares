@@ -291,7 +291,7 @@ $(document).ready(function() {
 					CallNo = $("#CallNoDiv").html();
 					pickuploc = $("#hardcopyitems").html();
 					$("#provide-div").html('<div class="line"><div class="span2 unit left"><p>If the library owns or has access to this item, we&#8217;ll use our copy. If not, we&#8217;ll do our best to get a copy we can use. If you know the call number, that will help us find the item more quickly.</p></div><div class="span2 unit left lastUnit">'+ CallNo +'</div>'+ pickuploc +'</div>'  );
-					$("#CallNoDiv").html("&nbsp;");
+					$("#CallNoDiv").hide();
 					// Show a "loading" animation
 
 					// Load catalog search in hidden div
