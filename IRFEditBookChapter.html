@@ -1,19 +1,27 @@
 <#INCLUDE filename="include_header.html">	
 <#INCLUDE filename="include_menu.html">	
 
-<h4>Edit Book Chapter for <#COURSE field="CourseNumber"></h4>
+<h4>Edit eReserve Reserve Item for <#COURSE field="CourseNumber"></h4>
 
-<form action="ares.dll" method="post" name="createitem" class="lib-form">
+<form action="ares.dll" method="post" name="CreateCourse" class="lib-form">
 <input type="hidden" name="Action" value="11"/>        
 <input type="hidden" name="Type" value="30"/>
 <input type="hidden" name="CourseID" value="<#COURSE field="CourseID"/>"/>				
 <input type="hidden" name="SessionID" value="<#PARAM name="SessionID">">
 <input type="hidden" name="ItemID" value="<#ITEM field="ItemID"/>">
+	
 
+<!-- Dynamically change these if javascript is available -->
+<input type="hidden" id="ItemType" name="ItemType" value="SER"/>						
+<input type="hidden" id="format" name="format" value="Article"/>
 
-<div class="line">
+<div style="display: none">
+<input type="checkbox" id="article-toggle" checked="checked" /> <label for="article-toggle" class="lib-inline">This is an article or book chapter</label>
+</div>
+
+<div class="line" id="article-book-chapter">
 	<div class="span3of4 unit left">
-		<label for="ArticleTitle"><#ERROR name="ERRORArticleTitle"><span class="<#VALIDATION name="ERRORArticleTitle">">Book Chapter Title</span></label>
+		<label for="ArticleTitle"><#ERROR name="ERRORArticleTitle"><span class="<#VALIDATION name="ERRORArticleTitle">">Article or Book Chapter Title</span></label>
         <input id="ArticleTitle" name="ArticleTitle" type="text" tabindex="1" value="<#ITEM field="ArticleTitle">" />
 	</div>
 
@@ -25,7 +33,7 @@
 
 <div class="line">
 	<div class="span1 unit">
-		<label for="Author"><#ERROR name="ERRORTitle"><span class="req">*</span><span class="<#VALIDATION name="ERRORTitle">">Book Title</span></label>
+		<label for="Author"><#ERROR name="ERRORTitle"><span class="req">*</span><span class="<#VALIDATION name="ERRORTitle">">Book, Journal, or Work Title</span></label>
 		<input id="Title" name="Title" type="text" tabindex="3" value="<#ITEM field="Title">" />
 	</div>
 </div>
@@ -73,7 +81,7 @@
 	</div>
 
 	<div class="span2 unit left lastUnit">
-		<label for="PubPlace"><#ERROR Name="ERRORPubPlace"><span class="<#VALIDATION field="ERRORPubPlace">">Place of Publication</span></label>
+		<label for="PubPlace"><#ERROR Name="ERRORPubPlace"><span class="<#VALIDATION name="ERRORPubPlace">">Place of Publication</span></label>
         <input id="PubPlace" name="PubPlace" type="text" value="<#ITEM field="pubplace"/>" />
 	</div>
 </div>
@@ -94,12 +102,21 @@
 </div>
 
 <div class="line">
-	<div class="span1 unit">
-		<input id="None" type="checkbox" checked="checked" <#ITEM field="SELECTED" Identifier="SupplyMethod" Value="None"> name="SupplyMethod" value="None" /> <label class="lib-inline">No change to the Reserve Item</label>
+	<h4> Tag this Item </h4>
+	<div class="span1 unit left">
+		<label for="ItemTags"><#ERROR name="ItemTags"><span>Comma separated list of tags to be assigned to this Item - e.g. Week 4.1, Assignment 3. Students can filter by these tags<span>		
+                <textarea id="ItemTags" name="ItemTags" tabindex="55"><#PARAM name="ItemTags"/></textarea><br />
+		</label>
 	</div>
 </div>
 
-<div class="line"  id="edit-reserve-item">
+<div class="line">
+	<div class="span1 unit">
+		<input id="None" type="checkbox" checked="checked" <#ITEM field="SELECTED" Identifier="SupplyMethod" Value="None"> name="SupplyMethod" value="None" /> <label class="lib-inline">Don't change pickup or delivery location</label>
+	</div>
+</div>
+
+<div class="line" id="edit-reserve-item">
 
 	<h4>Where can we find this item?</h4>
 
@@ -124,7 +141,7 @@
 <div id="provide-div"></div>
 
 <div class="lib-table" style="display:none;">
-<#TABLE class="instructor-table" name="ItemRestrictions" courseChoice="one" />
+<#TABLE class="instructor-table" name="ItemRestrictions" courseChoice="one" headerText="Reserve Restrictions" IncludeJavascriptCalendar="Yes" calendarText="<img src='images/cal.gif' alt='Open Calendar'/>"/>
 </div>
 
 <div class="line " id="supply-url">
@@ -138,13 +155,15 @@
 	<div class="span2 unit left">
 		<p style="padding-right:1em; text-align:justify;">If you own this item you can bring your copy to any library location for inclusion in your Course Reserves. If we can digitize the item, we will, otherwise we&#8217;ll allow your students to borrow it for short periods of time for the semester.</p>
 	</div>
+	<div id="hardcopyitems">
 	<div class="span4 unit left">
-		<label for="PickupLocation"><#ERROR name="ERRORPickUpLocation"><span class='<#VALIDATION name=ERRORPickupLocation>'>Which location?</span></label>
+		<label for="PickupLocation"><#ERROR name="ERRORPickUpLocation"><span class='<#VALIDATION name=ERRORPickupLocation>'>Put on reserve at?</span></label>
 		<#OPTION name="PickupLocation" tabIndex="60" SelectedValue="<#Course field="DefaultPickupSite">" >
 	</div>
-	<div class="span4 unit left lastUnit">
+	<div class="span4 unit left">
 		<label for="LoanPeriod"><#ERROR name="ERRORLoanPeriod">Loan Period:<span class='<#VALIDATION name=ERRORLoanPeriod>'></span></label>
 		<#OPTION name="LoanPeriod" SitePeriods="True" AddTopOption="Choose One"> 
+	</div>
 	</div>
 </div>
 
@@ -153,10 +172,6 @@
 .instructor-table a { position: relative; top: .1em;}
 .instructor-table thead { display: none;}
 </style>
-
-<!-- Dynamically change these if javascript is available -->
-<input type="hidden" id="ItemType" name="ItemType" value="SER"/><br />					
-<input type="hidden" id="format" name="format" value="BookChapter"/>
 
 <div class="line">
 	<div class="span1 unit" id="submit-container">
