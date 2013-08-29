@@ -51,11 +51,17 @@ var sessionid = '<#PARAM name="SessionID"/>';
 
 <script> /*quick hack to hide the button if no link is available */
     window.onload=function(){
+    var cistatus = "<#ITEM field="CurrentStatus"/>"
     var viewitemtext = "<#ITEM field="BuildURL" NewWindow="True" alt="View this item" linkText="View this item" footerText="">";
     if (viewitemtext == "")
-    {
-    $("#view-item-button").hide();
-    }
+        {
+            $("#view-item-button").hide();
+        }
+    if (viewitemtext == "" && cistatus == "Item Available on Electronic Reserves")
+        {
+            $("#view-item-button").hide();
+            alert("The document is missing or corrupt. Please notify reserves staff.");
+        }
     }
 </script>
 
