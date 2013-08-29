@@ -1,7 +1,11 @@
 <#INCLUDE filename="include_header.html">	
 <#INCLUDE filename="include_menu.html">	
 
-<h4>Add Reserve Item for <#COURSE field="CourseNumber"></h4>
+<h4>Add a Reserve Item for <#COURSE field="CourseNumber"></h4>
+<h5 id="newitemlisthead" style="display:none; cursor:pointer; font-size:13px; color:blue; padding-left:15px">Add a new item instead</h5>
+<h5 id="importlisthead" style="cursor:pointer; font-size:13px; color:blue; padding-left:15px">Import material(s) from a previous list instead</h5>
+
+<div id="newitem">
 
 <form action="ares.dll" method="post" name="createitem" class="lib-form">
 <input type="hidden" name="Action" value="11"/>        
@@ -10,7 +14,7 @@
 <input type="hidden" name="SessionID" value="<#PARAM name="SessionID">">	
 
 <div>
-<input type="checkbox" id="article-toggle" name="format" value="Article" checked="checked" /> <label for="article-toggle" class="lib-inline">This is an article or book chapter</label>
+<input type="checkbox" id="article-toggle" name="format" value="Article" checked="checked" /> <label for="article-toggle" class="lib-inline">This is an article or book chapter (eReserve)</label>
 </div>
 
 <div class="line" id="article-book-chapter">
@@ -97,6 +101,15 @@
 </div>
 
 <div class="line">
+	<h4> Tag this Item </h4>
+	<div class="span1 unit left"
+		<label for="ItemTags"><#ERROR name="ItemTags"><span>Comma separated list of tags to be assigned to this Item - e.g. Week 4.1, Assignment 3. Students can filter by these tags<span>		
+                <textarea id="ItemTags" name="ItemTags" tabindex="55"><#PARAM name="ItemTags"/></textarea><br />
+		</label>
+	</div>
+</div>
+
+<div class="line">
 
 	<h4>Where can we find this item?</h4>
 
@@ -113,10 +126,12 @@
 	</div>
 
 	<div class="span4 unit left" id="supply-library">
-		<input id="StaffSearch" type="radio" <#PARAM Name="SELECTED" Identifier="SupplyMethod" Value="StaffSearch"> name="SupplyMethod" value="StaffSearch" /> <label class="lib-inline" for="StaffSearch" title="We'll handle the rest from here.">Use Library Copy</label>
+		<input id="StaffSearch" type="radio" <#PARAM Name="SELECTED" Identifier="SupplyMethod" Value="StaffSearch"> name="SupplyMethod" value="StaffSearch" /> <label class="lib-inline" for="StaffSearch" title="We'll handle the rest from here.">Let us find it</label>
 	</div>
 
 </div>
+
+
 
 <div id="provide-div"></div>
 
@@ -137,10 +152,10 @@
 	</div>
 	<div id="hardcopyitems">
 	<div class="span4 unit left">
-		<label for="PickupLocation"><#ERROR name="ERRORPickUpLocation"><span class='<#VALIDATION name=ERRORPickupLocation>'>Which location?</span></label>
+		<label for="PickupLocation"><#ERROR name="ERRORPickUpLocation"><span class='<#VALIDATION name=ERRORPickupLocation>'>Put on reserve at?</span></label>
 		<#OPTION name="PickupLocation" tabIndex="60" SelectedValue="<#Course field="DefaultPickupSite">" >
 	</div>
-	<div class="span4 unit left lastUnit">
+	<div class="span4 unit left">
 		<label for="LoanPeriod"><#ERROR name="ERRORLoanPeriod">Loan Period:<span class='<#VALIDATION name=ERRORLoanPeriod>'></span></label>
 		<#OPTION name="LoanPeriod" SitePeriods="True" AddTopOption="Choose One"> 
 	</div>
@@ -165,5 +180,12 @@
 
 
 </form>
+
+</div>
+
+<div id="reuseclass" class="lib-table gvsu-clear" style="display:none">
+	<h3>Choose a course from which to import items</h3>
+	<#TABLE name="Course" class="instructor-table" Type="Import" AllowRowClick="Yes" headerText="Current and Previous Courses" LimitRecentMonths="60" AllowJavascriptHover="True" Session="PreviousOrCurrent" Role="Instructor"  column="Semester:Semester" column="CourseNumber:Course" column="CourseCode:Section Number" column="Name:Name" column="ReserveItems:Reserve Items" NoDataAction="ShowMessage" NoDataMessage="No courses found." orderby="C.StopDate DESC,C.CourseNumber ASC">		
+</div>
 
 <#INCLUDE filename="include_footer.html">

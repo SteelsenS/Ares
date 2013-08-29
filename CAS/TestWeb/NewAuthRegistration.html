@@ -1,13 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Ares - <#USER field="Username"/></title>
+<link rel="shortcut icon" href="favicon.ico" />
+
+<link rel=stylesheet href="css/xc2_default.css" type="text/css"/>
+<script language="javascript" src="js/xc2_default.js"></script>
+<script language="javascript" src="js/xc2_inpage.js"></script>
+<script language="javascript" src="js/arescal.js"></script>
+<link rel="stylesheet" type="text/css" href="css/fat.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="css/main.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="css/print.css" media="print" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" type="text/css" href="css/ie6_or_less.css" />
+<![endif]-->
+<script type="text/javascript" src="js/aresajax.js"></script>
+<script type="text/javascript" src="js/fat.js"></script>
+</head>
+<body id="type-b">
+<div id="wrap">
+
 	<#INCLUDE filename="include_header.html">	
-	<#INCLUDE filename="include_menu.html">	
+
+	<div id="content-wrap">
+		<#INCLUDE filename="include_menu.html">	
 		
-            <form action="ares.dll" method="post" name="NewAuthRegistration" class="lib-form">
+		<div id="content">
+
+            <form action="ares.dll" method="post" name="NewAuthRegistration" class="f-wrap-request">
                 <input type="hidden" name="Action" value="11"/>
-                <input type="hidden" name="Form" value="<#PARAM name="Form"/>"/>
+                <input type="hidden" name="Form" value="<#PARAM name="Form"/>"/>							
                 <input type="hidden" name="SessionID" value="<#PARAM name="SessionID">">
-                <div class="req"><b>*</b> Indicates required field</div>               
+                <div class="req"><b>*</b> Indicates required field</div>
+               
   
+                <fieldset>
 				<h3>Change Personal Information</h3>
+
+				<span style="background-color:#E6F4FF ;font-size: 110%"><#STATUS class="fade"></span>
+
 
                 	<label for="FirstName">                		                		
 						<b><#ERROR Name="ERRORFirstName"><span class="req">*</span>First Name</b>
@@ -74,9 +106,25 @@
 						<#OPTION name="Custom" GroupName="Department" SelectedValue="<#USER field=Department>" tabindex="75" Size="1"><br/>
  				</label>	
 
+		<label for="CourseEmailDefault">                            							    		
+		
+				<b><span class="<#Validation name="ERRORCourseEmailDefault">"><b>Default Course Email Subscriptions</b></span></b>
+			
+				<fieldset>
+				<label for="automaticsub">
+				<input id="automaticsub" type="radio" name="CourseEmailDefault" value="1" class="f-radio" tabindex="80" <#PARAM name="SELECTED" Identifier="CourseEmailDefault" Value="1"/> />
+				Automatic</label>
+				
+				<label for="manualsub">
+				<input id="manualsub" type="radio" name="CourseEmailDefault" value="0" class="f-radio" tabindex="85" <#PARAM name="SELECTED" Identifier="CourseEmailDefault" Value="0"/>/>
+				Manual</label>
+				
+				</fieldset>
+			</label>					
 									
 				<input style="border: 1px solid #000066; cursor: pointer;" type="submit" name="SubmitButton" tabindex="199" value="Change my info" />				
 				<input style="border: 1px solid #000066; cursor: pointer;" type="reset" name="ClearButton" tabindex="200" value="Clear" />			
+				</fieldset>
 			</form>			
 
 			<div id="footer">
@@ -84,8 +132,10 @@
 			<#INCLUDE filename="include_footer.html">
 			</div>
 			
-
+		</div>
 			
-
+	</div>
 	
 </div>
+</body>
+</html>

@@ -6,6 +6,9 @@
 <input type="hidden" name="Action" value="11"/>
 <input type="hidden" name="Form" value="<#PARAM name="Form"/>"/>							
 <input type="hidden" name="SessionID" value="<#PARAM name="SessionID">">
+<input type="hidden" name="FirstName" value="<#USER field="FirstName"/>">
+<input type="hidden" name="LastName" value="<#USER field="LastName"/>">
+<input type="hidden" name="ExternalUserID" value="<#USER field="ExternalUserID"/>">
 					
 <h4>Manage Your Account</h4>
 
@@ -13,20 +16,20 @@
 
 	<!-- First Name input -->
 	<div class="span2 unit left">	
-	<label for="FirstName">First Name</label>
-	<p style="font-size:1.2em;" id="FirstName"><#USER field="FirstName"/></p>
+	    <label for="FirstName">First Name</label>
+	    <p style="font-size:1.2em;" id="FirstName"><#USER field="FirstName"/></p>
 	</div> 
 
 	<!-- Last Name input -->
 	<div class="span2 unit left lastUnit">		
-	<label for="LastName">Last Name</label>
-	<p style="font-size:1.2em;" id="LastName"><#USER field="LastName"/></p>
+	    <label for="LastName">Last Name</label>
+	    <p style="font-size:1.2em;" id="LastName"><#USER field="LastName"/></p>
 	</div>
 </div>
 
 
 <!-- Status input -->
-<!--div class="line">
+<div class="line">
 	<div class="span2 unit left">
 		<label for="StatusGroup"><span class="req">*</span> <span class="<#ERROR name="ERRORStatus">">Status</span></label>
 		<#OPTION name="Custom" GroupName="StatusGroup" selectedValue="<#USER Field=Status>" tabindex="11" Size="1">
@@ -35,7 +38,7 @@
 		<label for="Department"><#ERROR name="ERRORDepartment">Department</label>						
 		<#OPTION name="Custom" GroupName="Department" selectedValue="<#USER field=Department>" tabindex="4" Size="1">
 	</div>
-</div-->
+</div>
 
 <div class="line">
 	<!-- Email input -->

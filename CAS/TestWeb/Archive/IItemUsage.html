@@ -1,0 +1,24 @@
+<#INCLUDE filename="include_header.html">	
+<#INCLUDE filename="include_menu.html">	
+
+<script>
+var sessionid = '<#PARAM Name="SessionID">';
+</script>
+		<h3>Detailed Reserve Usage</h3>
+		
+		<div class="instructor">
+		<div class="row"><span style="font-weight: bold"><#ITEM field="Title"/></span></div>
+			<div class="row"><#ITEM field="ArticleTitle"/></div>
+			<div class="row"><#ITEM field="Author"/></div>
+			<div class="row"><#ITEM field="Description"/></div>
+			<div class="row"><a href="<#ACTION action="10" form="115" valueType="Lookup" Value="ClassID">">Back to Class Usage</a></div>
+		</div>
+		
+		<p><#TABLE Name="ItemUsage" class="instructor-table-nohover" headerText="Detailed Reserve Usage" AllowJavascriptHover="False" AllowSort="Yes" NoDataMessage="This item has not been viewed." NoDataAction="ShowMessage" AllowSort="True" orderBy="LastName,FirstName,UsageCount DESC"></p>			
+
+		<p><#TABLE Name="ItemNonUsage" class="instructor-table-nohover" headerText="Students who did not view this item" AllowJavascriptHover="False" AllowSort="Yes" NoDataMessage="All Students viewed this item." NoDataAction="ShowMessage" AllowSort="True" orderBy="LastName,FirstName,UsageCount DESC"></p>			
+
+
+			<div id="footer">
+			<p><#COPYRIGHT></p>
+			<#INCLUDE filename="include_footer.html">

@@ -1,0 +1,34 @@
+  <style type="text/css">
+
+#topbannerbar {
+background-image:url(images/bg1.gif);
+background-repeat:repeat-x;
+background-position:top left;
+height:45px;
+}
+
+#topbannerbar a {
+text-decoration:none;
+color:#DDEEFF;
+background-image:url(images/top_divider.gif);
+padding-left:10px;
+padding-right:11px;
+background-repeat:no-repeat;
+background-position:right;
+}
+
+#topbannerbar a:hover {
+text-decoration:none;
+color:#fff;
+}
+
+
+</style>
+
+<div class="instructor">
+<div class="row"><span style="font-weight: bold"><#ITEM field="Title"/></span></div>
+<div class="row"><#ITEM field="ArticleTitle"/></div>
+<div class="row"><#ITEM field="Author"/></div>
+<div class="row"><#ITEM field="Description"/></div>
+<div class="row"><a href="<#ACTION action="10" form="115" valueType="Lookup" Value="ClassID">">Back to Class Usage</a></div>
+</div>

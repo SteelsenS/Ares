@@ -1,0 +1,91 @@
+	<#INCLUDE filename="include_header.html">	
+	<#INCLUDE filename="include_menu.html">	
+		
+            <form action="ares.dll" method="post" name="NewAuthRegistration" class="lib-form">
+                <input type="hidden" name="Action" value="11"/>
+                <input type="hidden" name="Form" value="<#PARAM name="Form"/>"/>
+                <input type="hidden" name="SessionID" value="<#PARAM name="SessionID">">
+                <div class="req"><b>*</b> Indicates required field</div>               
+  
+				<h3>Change Personal Information</h3>
+
+                	<label for="FirstName">                		                		
+						<b><#ERROR Name="ERRORFirstName"><span class="req">*</span>First Name</b>
+                		<input id="FirstName" name="FirstName" type="text" size="40" class="f-name" tabindex="10" value="<#USER field="FirstName"/>"><br />
+                	</label>
+                	
+					<label for="Last Name">                       							         		
+                		<b><#ERROR Name="ERRORLastName"><span class="req">*</span>Last Name</b>
+                		<input id="LastName" name="LastName" type="text" size="40" class="f-name" tabindex="15" value="<#USER field="LastName"/>"><br />
+                	</label>
+                	
+					<label for="LibraryID">                		               							
+                		<b><#ERROR Name="ERRORLibraryID"><span class="req">*</span>Library ID/NetID/Some unique campus number</b>
+                		<input id="LibraryID" name="LibraryID" type="text" size="40" class="f-name" tabindex="20" value="<#USER field="LibraryID"/>"><br />
+                	</label>
+					
+                	<label for="EMailAddress">                		                		
+                		<b><#ERROR Name="ERROREMailAddress"><span class="req">*</span>EMail Address</b>
+                		<input id="EMailAddress" name="EMailAddress" type="text" size="40" class="f-name" tabindex="25" value="<#USER Field="EmailAddress"/>"><br />
+                	</label>
+				
+                	<label for="Phone1">                     							          		
+                		<b><#ERROR Name="ERRORPhone1"><span class="req">*</span>Phone Number</b>
+                		<input id="Phone1" name="Phone1" type="text" size="40" class="f-name" tabindex="30" value="<#USER field="Phone1"/>"><br />
+                	</label>
+                
+					<label for="Address1">                   							            		
+                		<b><#ERROR Name="ERRORAddress1"><span class="req">*</span>Address</b>
+                		<input id="Address1" name="Address1" type="text" size="40" class="f-name" tabindex="35" value="<#USER field="Address1"/>"><br />
+                	</label>				
+
+					<label for="Address2">                   							            		
+                		<b><#ERROR Name="ERRORAddress2">Address 2</b>
+						<input alt="Address 2" id="Address2" name="Address2" type="text" size="40" class="f-name" tabindex="45" value="<#USER field="Address2"/>">						
+                	</label>				
+					
+                	<label for="City">					                		                
+						<b><#ERROR name="ERRORCity"><span class="req">*</span>City</b>
+                		<input id="City" name="City" type="text" size="20" class="f-name" tabindex="50" value="<#USER field="City"/>"><br />
+                	</label>
+					
+                	<label for="State">                            							    		
+                		<b><#ERROR name="ERRORState"><span class="req">*</span>State</b>
+                		<!--<input id="State" name="State" type="text" size="20" class="f-name" tabindex="55" value="<#USER Field="State"/>"><br />-->
+<#OPTION name="Custom" GroupName="State" SelectedValue="<#USER Field=State>" tabindex="60" Size="1"><br/>                	</label>
+								
+                	<label for="Zip">
+                		<b><span class="req">*</span>Zip Code</b>
+                		<input id="Zip" name="Zip" type="text" size="40" class="f-name" tabindex="65" value="<#USER field="Zip"/>"><br />
+                	</label>
+					
+					<input type="hidden" name="StatusGroup" value="<#USER field="Status"/>">
+
+<!--If you allow the user to change their status -->
+<!--
+               	<label for="StatusGroup">                            							    		
+                		<b><#ERROR name="ERRORStatusGroup">Status</b>
+						
+<#OPTION name="Custom" GroupName="StatusGroup" SelectedValue="<#USER Field=Status>" tabindex="70" Size="1"><br/> 					</label>						
+ -->                	
+
+               	<label for="Department">
+                		<b><#ERROR name="ERRORDepartment">Department</b>						
+						<#OPTION name="Custom" GroupName="Department" SelectedValue="<#USER field=Department>" tabindex="75" Size="1"><br/>
+ 				</label>	
+
+									
+				<input style="border: 1px solid #000066; cursor: pointer;" type="submit" name="SubmitButton" tabindex="199" value="Change my info" />				
+				<input style="border: 1px solid #000066; cursor: pointer;" type="reset" name="ClearButton" tabindex="200" value="Clear" />			
+			</form>			
+
+			<div id="footer">
+			<p><#COPYRIGHT></p>
+			<#INCLUDE filename="include_footer.html">
+			</div>
+			
+
+			
+
+	
+</div>

@@ -1,0 +1,99 @@
+<#INCLUDE filename="include_header.html">	
+<#INCLUDE filename="include_menu.html">
+<script language="javascript" type="text/javascript" src="datetimepicker.js">
+//Date Time Picker script- by TengYong Ng of http://www.rainforestnet.com
+//Script featured on JavaScript Kit (http://www.javascriptkit.com)
+//For this script, visit http://www.javascriptkit.com 
+</script>
+<script language = "javascript">		
+startHighlight = function()
+{				
+	if (document.all && document.getElementById)
+	{
+		navRoot = document.getElementById("ResultsGrid");
+			
+		// Get a reference to the TBODY element 
+		tbody = navRoot.childNodes[0];
+			
+		for (i = 1; i < tbody.childNodes.length; i++)
+		{
+			node = tbody.childNodes[i];
+			if (node.nodeName == "TR")
+			{
+				node.onmouseover=function()
+				{
+					this.className = "over";								
+				}
+					
+				node.onmouseout=function()
+				{
+					this.className = this.className.replace("over", "");
+				}
+			}
+		}
+	}
+}
+	
+window.onload = startHighlight;			
+</script>
+
+<form action="Ares.dll" method="POST">
+ 
+ <input type="hidden" name="SessionID" value="<#PARAM name="SessionID"/>">
+ <input type="hidden" name="AresForm" value="ItemSearchResults">
+ <input type="hidden" name="Username" value="<#USER field="Username"/>">
+ <div align="center">   
+  <table width="95%">
+      
+   <tr> 
+        
+    <td> <table width="100%" cellpadding="0" cellspacing="0">
+            
+      <tr bgcolor="#FFFFFF"> 
+              
+       <td> 
+                
+        <!--Logo Banner-->
+                CGIFN=^VARIncludeFile:LogoBanner.html^ 
+                
+        <!--End Logo Banner-->
+      </td>       <td align="right"> 
+                
+        <!--Right Banner-->
+                CGIFN=^VARIncludeFile:Right.html^&nbsp; 
+<!--End Right Banner-->
+              </td>
+      </tr>
+          </table></td>
+   </tr>
+      
+   <tr> 
+        
+    <td valign="top"> <table width="100%">
+            
+      <tr> 
+              
+       <td width="200px" valign="top"> 
+                
+        <!--Left Toolbars-->
+                CGIFN=^VARIncludeFile:LeftMenu.html^ 
+                
+        <!--End Left Toolbar-->
+              </td>
+       <td valign="top"> 
+                
+<!--Main window-->
+CGIFN=^VARItemSearchResults^			  
+<!--end main window-->
+<!-->
+</td>
+</tr>
+</table></td>
+</tr> </table> 
+<p><font size="-5">&copy; Copyright 2004 - 2005 Atlas Systems, Inc. All Rights 
+Reserved.</font></p></td></tr>
+</table> </div>
+</form>
+</body>
+</html>-->
+<#INCLUDE filename="include_footer.html">

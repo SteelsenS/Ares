@@ -27,7 +27,7 @@
          return (div.getElementsByTagName('marquee').length === 1);         
       }());
    </script>
-   <script src="js/jquery-1.5.1.min.js"></script>
+   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
 	<script>
 $(document).ready(function() {
 		
@@ -42,6 +42,20 @@ $(document).ready(function() {
 		});
 		}
 
+			$("#importlisthead").click(function() {
+				$("#newitem").hide(1000);
+				$("#importlisthead").hide(1000);
+				$("#reuseclass").show(1000);
+				$("#newitemlisthead").show(1000);
+					});
+					
+			$("#newitemlisthead").click(function() {
+				$("#newitem").show(1000);
+				$("#importlisthead").show(1000);
+				$("#reuseclass").hide(1000);
+				$("#newitemlisthead").hide(1000);
+					});
+		
 		var itemURLLink, itemTextLink;
 		
 		if($("table#courseInfo").length > 0) { // Make item listing more humane - link to the item directly!
@@ -263,14 +277,24 @@ $(document).ready(function() {
 			$("#StaffSearch").click(function() {
 				var checkedlink = $(this).is(":checked");
 				if(checkedlink == true) {
+					if($("#article-toggle").is(":checked"||null)) {
+						// Don't need hard copy things
+						$("#hardcopyitems").html("&nbsp;");
+					} else {
+						$("#hardcopyitems").html(hardCopyDiv);
+					}
 					$("#supply-campus").hide();
 					$("#supply-url").hide();
 					$("#button-suffix").hide();
 					document.getElementById("URL").value = ''; // Clear the value
 					$("#provide-div").show();
 					CallNo = $("#CallNoDiv").html();
-					$("#provide-div").html('<div class="line"><div class="span2 unit left"><p>If the library owns or has access to this item, we&#8217;ll use our copy. If not, we&#8217;ll do our best to get a copy we can use. If you know the call number, that will help us find the item more quickly.</p></div><div class="span2 unit left lastUnit">' + CallNo + '</div></div>');
+					pickuploc = $("#hardcopyitems").html();
+					$("#provide-div").html('<div class="line"><div class="span2 unit left"><p>If the library owns or has access to this item, we&#8217;ll use our copy. If not, we&#8217;ll do our best to get a copy we can use. If you know the call number, that will help us find the item more quickly.</p></div><div class="span2 unit left lastUnit">'+ CallNo +'</div>'+ pickuploc +'</div>'  );
 					$("#CallNoDiv").html("&nbsp;");
+
+                    //There's a problem here that if you click the "let us find it" button twice in a row it hides the call number div irreversibly.
+
 					// Show a "loading" animation
 
 					// Load catalog search in hidden div
@@ -316,7 +340,7 @@ $(document).ready(function() {
 				$("#button-suffix").hide();
 				$("#provide-div").show();
 					CallNo = $("#CallNoDiv").html();
-					$("#provide-div").html('<div class="line"><div class="span2 unit left"><p>If the library owns or has access to this item, we&#8217;ll use our copy. If not, we&#8217;ll do our best to get a copy we can use. If you know the call number, that will help us find the item more quickly.</p></div><div class="span2 unit left lastUnit">' + CallNo + '</div></div>');
+					$("#provide-div").html('<div class="line"><div class="span2 unit left"><p>If the library owns or has access to this item, we&#8217;ll use our copy. If not, we&#8217;ll do our best to get a copy we can use. If you know the call number, that will help us find the item more quickly.</p></div><div class="span2 unit left lastUnit">'+ CallNo +'</div>'+ pickuploc +'</div>'  );
 					$("#CallNoDiv").html("&nbsp;");
 			}
 		

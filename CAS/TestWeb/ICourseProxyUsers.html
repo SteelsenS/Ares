@@ -15,30 +15,30 @@ var sessionid = '<#PARAM Name="SessionID">';
 	
 	<div class="span3 left unit lastUnit">
 	<style>.line .span3 a img {width: auto;}</style>
-		<#SUBSCRIBE notSubscribedText="" subscribedText="" subscribeLink="<span class='lib-button-small-grey right subscribe' title='Get emailed when new items are added'>Subscribe Now</span>" unsubscribeLink="<span class='lib-button-small-grey right unsubscribe'>Unsubscribe</span>"/>
 	</div>
 </div>
 
-<h4>Proxy Users</h4>
+<h4>Administrators for This Class</h4>
 
-<p>These people have administrative access to your reserves for this course.</p>
+<p>These people have administrative access to your reserves for this course. If you want to add a user to adminster all of your courses then select "administrative users" from the "instructor tools" menu. You are always an unlisted administrator for all of your classes.</p>
 
 <div class="lib-table">
-<#TABLE Name="Proxy" headerText="Proxy Users" class="instructor-table" DeleteText="Remove"  Type="Course" HideColumnHeaders="True" column="DeleteUsernameFirstnameLastname:Name" NoDataMessage="You have no administrative users assigned to your classes. <a href'#addUser'>Add an adminiatrative user now</a>." NoDataAction="ShowMessage">			
+<#TABLE Name="Proxy" headerText="Administrators for this class:" class="instructor-table" DeleteText="Remove"  Type="Course" HideColumnHeaders="True" column="DeleteUsernameFirstnameLastname:Name" NoDataMessage="You have no administrative users assigned to your classes. <a href'#addUser'>Add an administrative user now</a>." NoDataAction="ShowMessage">			
 </div>
 
 <form method="post" action="ares.dll" class="lib-form" id="addUser">
-<input type="hidden" name="SessionID" value="<#PARAM name="SessionID"/>"/>
-<input type="hidden" name="action" value="11"/>
-<input type="hidden" name="type" value="51"/>
+<input type="hidden" name="SessionID" value="<#PARAM name="SessionID">"/>
+<input type="hidden" name="action" value="11">
+<input type="hidden" name="type" value="51">
 <input type="hidden" name="Form" value="<#PARAM name="Form">"/>
-<input type="hidden" name="CourseID" value="<#COURSE field="CourseID">"/>
+<input type="hidden" name="CourseID" value="<#COURSE field="CourseID">">
 
 <h4 style="margin-top:1em;">Add an administrator for this course</h4>	
 
 <label for="ProxyUser">Administrator's Yale NetID:</label>
-<input name="ProxyUser" type="text"/>
-<input class="lib-button" id="AddProxy" type="submit" name="AddProxyUser" style="margin-top:1em;" Value="Add Proxy User"/></p>	
+<input name="ProxyUser" type="text">
+
+<input class="lib-button" id="AddProxy" type="submit" name="AddProxyUser" style="margin-top:1em;" Value="Add Proxy User"></p>	
 
 </form>			
 

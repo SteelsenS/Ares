@@ -1,7 +1,7 @@
 <#INCLUDE filename="include_header.html">	
 <#INCLUDE filename="include_menu.html">	
 
-<h4>Edit Reserve Item for <#COURSE field="CourseNumber"></h4>
+<h4>Edit Print Reserve Item for <#COURSE field="CourseNumber"></h4>
 
 <form action="ares.dll" method="post" name="CreateCourse" class="lib-form">
 <input type="hidden" name="Action" value="11"/>        
@@ -74,20 +74,29 @@
 
 <div class="line" id="isbn-div">
 	<div id="number-wrapper">
-	<div class="span2 unit left">
-		<label for="ISXN"><#ERROR name="ERRORISXN"><span class="<#VALIDATION name="ERRORISXN">"><abbr title="International Standard Book Number">ISBN</abbr> or <abbr title="International Standard Serials Number">ISSN</abbr></span></label>
-		<input id="ISXN" name="ISXN" type="text" value="<#ITEM field="ISXN">" />
-	</div>
-	<div class="span2 unit left lastUnit" id="CallNoDiv">
-		<label for="ISXN"><#ERROR name="ERRORCallNumber"><span class="<#VALIDATION name="ERRORCallNumber">">Call Number</span></label>
-		<input id="CallNumber" name="CallNumber" type="text" value="<#ITEM field="CallNumber">" />
-	</div>
+	    <div class="span2 unit left">
+		    <label for="ISXN"><#ERROR name="ERRORISXN"><span class="<#VALIDATION name="ERRORISXN">"><abbr title="International Standard Book Number">ISBN</abbr> or <abbr title="International Standard Serials Number">ISSN</abbr></span></label>
+		    <input id="ISXN" name="ISXN" type="text" value="<#ITEM field="ISXN">" />
+	    </div>
+	    <div class="span2 unit left lastUnit" id="CallNoDiv">
+		    <label for="CallNumber"><#ERROR name="ERRORCallNumber"><span class="<#VALIDATION name="ERRORCallNumber">">Call Number</span></label>
+		    <input id="CallNumber" name="CallNumber" type="text" value="<#ITEM field="CallNumber">" />
+	    </div>
+    </div>
 </div>
+
+<div class="line">
+	<h4> Tag this Item </h4>
+	<div class="span1 unit left">
+		<label for="ItemTags"><#ERROR name="ItemTags"><span>Comma separated list of tags to be assigned to this Item - e.g. Week 4.1, Assignment 3. Students can filter by these tags<span>		
+                <textarea id="ItemTags" name="ItemTags" tabindex="55"><#PARAM name="ItemTags"/></textarea><br />
+		</label>
+	</div>
 </div>
 
 <div class="line">
 	<div class="span1 unit">
-		<input id="None" type="checkbox" checked="checked" <#ITEM field="SELECTED" Identifier="SupplyMethod" Value="None"> name="SupplyMethod" value="None" /> <label class="lib-inline">No change to the Reserve Item</label>
+		<input id="None" type="checkbox" checked="checked" <#ITEM field="SELECTED" Identifier="SupplyMethod" Value="None"> name="SupplyMethod" value="None" /> <label class="lib-inline">Don't change pickup or delivery location</label>
 	</div>
 </div>
 
@@ -115,36 +124,29 @@
 
 <div id="provide-div"></div>
 
-<div class="lib-table" style="display:none;">
-<#TABLE class="instructor-table" name="ItemRestrictions" courseChoice="one" headerText="Reserve Restrictions" IncludeJavascriptCalendar="Yes" calendarText="<img src='images/cal.gif' alt='Open Calendar'/>"/>
-</div>
+    <div class="line " id="supply-url">
+	    <div class="span1 unit">
+		    <label for="URL"><#ERROR name="ERRORURL">If the item is already online, enter the <abbr title="Uniform Resource Location">URL</abbr></label>
+		    <input id="URL" name="URL" type="text" placeholder="http://" value="<#ITEM field="URL">" />
+	    </div>
+    </div>
 
-<div class="line " id="supply-url">
-	<div class="span1 unit">
-		<label for="URL"><#ERROR name="ERRORURL">If the item is already online, enter the <abbr title="Uniform Resource Location">URL</abbr></label>
-		<input id="URL" name="URL" type="text" placeholder="http://" value="<#ITEM field="URL">" />
-	</div>
-</div>
+    <div class="line" id="supply-campus">
+	    <div class="span2 unit left">
+		    <p style="padding-right:1em; text-align:justify;">If you own this item you can bring your copy to any library location for inclusion in your Course Reserves. If we can digitize the item, we will, otherwise we&#8217;ll allow your students to borrow it for short periods of time for the semester.</p>
+	    </div>
+	    <div id="hardcopyitems">
+	        <div class="span2 unit left">
+		        <label for="PickupLocation"><#ERROR name="ERRORPickUpLocation"><span class='<#VALIDATION name=ERRORPickupLocation>'>Put on reserve at?</span></label>
+		        <#OPTION name="PickupLocation" tabIndex="60" SelectedValue="<#Course field="DefaultPickupSite">" >
+	        </div>
+	        <div class="span2 unit right">
+		        <label for="LoanPeriod"><#ERROR name="ERRORLoanPeriod"><span class='<#VALIDATION name=ERRORLoanPeriod>'>Loan Period:</span></label>
+		        <#OPTION name="LoanPeriod" SitePeriods="True" AddTopOption="Choose One"> 
+	        </div>
+	    </div>
+    </div>
 
-<div class="line" id="supply-campus">
-	<div class="span2 unit left">
-		<p style="padding-right:1em; text-align:justify;">If you own this item you can bring your copy to any library location for inclusion in your Course Reserves. If we can digitize the item, we will, otherwise we&#8217;ll allow your students to borrow it for short periods of time for the semester.</p>
-	</div>
-	<div class="span4 unit left">
-		<label for="PickupLocation"><#ERROR name="ERRORPickUpLocation"><span class='<#VALIDATION name=ERRORPickupLocation>'>Which location?</span></label>
-		<#OPTION name="PickupLocation" tabIndex="60" SelectedValue="<#Course field="DefaultPickupSite">" >
-	</div>
-	<div class="span4 unit left lastUnit">
-		<label for="LoanPeriod"><#ERROR name="ERRORLoanPeriod">Loan Period:<span class='<#VALIDATION name=ERRORLoanPeriod>'></span></label>
-		<#OPTION name="LoanPeriod" SitePeriods="True" AddTopOption="Choose One"> 
-	</div>
-</div>
-
-<style>
-.instructor-table input { width: 72% !important; float: left; }
-.instructor-table a { position: relative; top: .1em;}
-.instructor-table thead { display: none;}
-</style>
 
 <div class="line">
 	<div class="span1 unit" id="submit-container">

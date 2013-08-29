@@ -1,0 +1,12 @@
+<#INCLUDE filename="include_header.html">	
+<#INCLUDE filename="include_menu.html">	
+
+<script>
+var sessionid = '<#PARAM Name="SessionID">';
+</script>
+
+<div class="lib-table">
+<#TABLE name="Course" type="AddCourse"  addCourseText="<span class='lib-button-small-grey' style='margin-bottom:0;''>Add Class</span>" previouslyAddedText="Added" id="SearchResults" class="student-table-nohover" AllowRowClick="No" headerText="Classes" AllowJavascriptHover="No" Session="Current" Role="Student" column="CourseNumber:Course" column="CourseCode:Sec" column="Name:Name" column="Instructor:Instructor" column="ItemCount:Items" NoDataAction="ShowMessage" NoDataMessage="No classes were found with that criteria.<br/>To add classes to your account, <a href='<#Action action=10 form=63>'>Search Classes</a>" footerText="<a href='<#Action action=10 form=63>'>Search Again?</a>">
+</div>
+			
+<#INCLUDE filename="include_footer.html">

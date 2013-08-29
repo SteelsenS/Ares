@@ -18,7 +18,7 @@ var sessionid = '<#PARAM name="SessionID"/>';
 		<#SUBSCRIBE notSubscribedText="" subscribedText="" subscribeLink="<span class='lib-button-small-grey right subscribe' title='Get emailed when new items are added'>Subscribe Now</span>" unsubscribeLink="<span class='lib-button-small-grey right unsubscribe'>Unsubscribe</span>"/>
 	</div>
 </div>
-			
+	        <#TAGCLOUD TagType="Course" MaxFontSizes="5" IncludeTagCount="Yes" TagFence="No" /><br/><br/>			
 <div class="lib-table">
  <#TABLE class="instructor-table" name="Item" type="CourseItems" headerText="Reserve Items" LinkType="ItemInfo" AllowRowClick="Yes" LinkColumn="BothTitles" AllowJavascriptHover="Yes" column="BothTitles:Title" column="Author:Author" column="inactiveDate:Inactive" column="CurrentStatus:Status" NoDataAction="ShowMessage" NoDataMessage="There are no items in this class. <a href='<#ACTION action='10' form='2' value='IRFMenu'>&CourseID=<#COURSE field='CourseID'>'>Add reserve items now</a>." allowsort="true">
 </div>

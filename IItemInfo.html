@@ -49,4 +49,14 @@ var sessionid = '<#PARAM name="SessionID"/>';
 </div>
 </div>
 
+<script> /*quick hack to hide the button if no link is available */
+    window.onload=function(){
+    var viewitemtext = "<#ITEM field="BuildURL" NewWindow="True" alt="View this item" linkText="View this item" footerText="">";
+    if (viewitemtext == "")
+    {
+    $("#view-item-button").hide();
+    }
+    }
+</script>
+
 <#INCLUDE filename="include_footer.html">

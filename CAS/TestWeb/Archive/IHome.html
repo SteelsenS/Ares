@@ -1,0 +1,29 @@
+<#INCLUDE filename="include_header.html">	
+<#INCLUDE filename="include_menu.html">	
+
+<script>
+var sessionid = '<#PARAM Name="SessionID">';
+</script>
+
+
+<div class="lib-table">
+<#TABLE name="Course" class="instructor-table" AllowRowClick="Yes" headerText="Current Classes" LinkColumn="CourseNumber" AllowJavascriptHover="True" Session="Current" Role="Instructor" column="CourseNumber:Course" column="CourseCode:Section" column="Name:Name" column="ReserveItems:Reserve Items" footerText="" NoDataAction="ShowMessage" NoDataMessage="No classes found. <#ACTION action="10" form="111" linkType="URL" linkText="Create a new class now">">
+</div>
+<div class="line" style="margin-top: 1em;">
+<div class="span2 unit left">
+<a href="<#Action action='10' form='2' value='IActiveCourseList'>" class="lib-button-grey">View upcoming classes</a>
+</div>
+<div class="span2 unit left">
+<div class="right">
+<a href="<#ACTION action='10' form='2' value='IPreviousCourseList'>" class="lib-button-grey">View past classes</a>
+</div>
+</div>
+
+</div>
+			
+
+<div class="lib-table">
+<#TABLE class="instructor-table" name="Item" headerText="Awaiting Supply By Instructor" ShowHiddenItems="True" LinkType="ItemEdit" AllowRowClick="Yes" LinkColumn="BothTitlesIcon" AllowJavascriptHover="True" column="BothTitlesIcon:Title" column="Author:Author" column="Department:Department" column="CourseNumber:Course" ItemStatus="Awaiting Supply By Instructor" NoDataAction="ShowMessage" NoDataMessage="No Classes Found">
+</div>		
+
+<#INCLUDE filename="include_footer.html">

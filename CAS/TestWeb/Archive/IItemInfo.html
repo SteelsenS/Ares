@@ -1,0 +1,50 @@
+<#INCLUDE filename="include_header.html">	
+<#INCLUDE filename="include_menu.html">	
+
+<script>
+var sessionid = '<#PARAM name="SessionID"/>';
+</script>
+
+<div class="line">
+<div class="span3of4 unit left" style="padding:0;">
+<a href="<#ACTION action="10" form="60" valueType="Lookup" Value="CourseID">" style="text-decoration: underline;display:block;margin-bottom:1em;">&laquo; Back to <#COURSE field="CourseNumber"> - <#COURSE field="Name"></a>
+</div>
+<div class="span4 unit left lastUnit" style="padding:0;">
+<style>
+#edit-item-button a { color: #333 !important; }
+</style>
+<span class="lib-button-small-grey right" id="edit-item-button" style="margin-bottom: 0;"><#ITEM field="BuildEditURL" NewWindow="False" alt="Edit this item" linkText="Edit Item"></span>
+</div>
+</div>
+
+<div class="line">
+<div class="span1 unit">
+<h4>Item Details:</h4>
+
+<p style="font-size:1.3em;"><#ITEM field="Icon" headerText="<span style="float: left; margin: 0 .7em 1em 0;">" footerText="</span>" /><#ITEM field="Author" footerText=". " /><#ITEM field="PubDate" headerText="(" footerText="). " /><#ITEM field="JournalYear" headerText="(" footerText="). " /><#ITEM field="ArticleTitle" headerText="&#8220;" footerText=".&#8221; " /><#ITEM field="Title" headerText="<i>" footerText="</i>. " /><#ITEM field="PubPlace" footerText=": " /><#ITEM field="Publisher" footerText=". " /><#ITEM field="Pages" headerText="pp." footerText=". " /></p>
+<p style="font-size:1.3em;"><#ITEM field="CurrentStatus" headerText="<b>Currently:</b> " /> <#ITEM field="ReasonForCancellation" headetText=" : "/></p>
+
+
+<#ITEM field="ShelfLocation" headerText="<p><strong>Location:</strong> " footerText="</p>" />
+				
+<#ITEM field="WorldcatLink" linkText="<img src='images/worldcat.gif' height='16' width=16' alt='Worldcat Logo' title='Get more information from OCLC Open Worldcat'/> Get more information" headerText="<br/>">
+				
+										
+
+<div class="lib-table instructor-table-nohover">
+<#TABLE class="instructor-table-nohover" name="ItemNotes" headerText="Notes" noDataAction="ShowMessage" noDataMessage="No Notes" ExcludeNoteTypes="Staff">
+			<#TABLE class="instructor-table-nohover" name="ItemTracking" headerText="Tracking" noDataAction="ShowMessage" noDataMessage="No Tacking information" column="TrackingDateTime:Date" column="Status:Status">
+</div>
+</div>
+</div>
+
+<div class="line">
+<div class="span1 unit">
+<style>
+#item-delete-button a { color: red !important; }
+</style>
+<span class="lib-button-small-grey right" id="item-delete-button"><#ITEM field="BuildDeleteURL" NewWindow="False" alt="Delete item" linkText="Delete item" /></span>
+</div>
+</div>
+
+<#INCLUDE filename="include_footer.html">
