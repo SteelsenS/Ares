@@ -154,8 +154,9 @@ $(document).ready(function() {
 			// Swap out Journal dates for publisher field & make the PubDate field Journal dates
 			
 			$("#journal-dates").html(publisher);
-			$("#publication-date-field").find("input").attr("id","JournalYear").attr("name","JournalYear");
-			$("#publication-date-field").find("label").attr("for","JournalYear");
+            //Commented out the next two so that both monographs and serials use the publication date field
+			//$("#publication-date-field").find("input").attr("id","JournalYear").attr("name","JournalYear");
+			//$("#publication-date-field").find("label").attr("for","JournalYear");
 			
 			var serialDetails = $(".js-fallback-article").html();
 			
@@ -179,8 +180,10 @@ $(document).ready(function() {
 					$("#article-book-chapter").slideToggle(400);
 					$(".js-fallback-article").html(serialDetails);
 					$(".js-fallback-book").html("");
-					$("#publication-date-field").find("input").attr("id","JournalYear").attr("name","JournalYear");
-					$("#publication-date-field").find("label").attr("for","JournalYear");
+					$("#publication-date-field").find("input").attr("id","PubDate").attr("name","PubDate");
+					$("#publication-date-field").find("label").attr("for","PubDate");
+					//$("#publication-date-field").find("input").attr("id","JournalYear").attr("name","JournalYear"); Corresponding to above removal of journal year fields
+					//$("#publication-date-field").find("label").attr("for","JournalYear");
 					document.getElementById('format').value = 'Article';
 					document.getElementById('ItemType').value = 'SER';
 

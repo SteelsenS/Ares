@@ -102,12 +102,13 @@
 </div>
 
 <div class="line">
-	<h4> Tag this Item </h4>
-	<div class="span1 unit left">
-		<label for="ItemTags"><#ERROR name="ItemTags"><span>Comma separated list of tags to be assigned to this Item - e.g. Week 4.1, Assignment 3. Students can filter by these tags<span>		
-                <textarea id="ItemTags" name="ItemTags" tabindex="55"><#PARAM name="ItemTags"/></textarea><br />
-		</label>
-	</div>
+    <div class="span1 unit">
+        <h4>Item Tags:</h4>
+    	<label for="ItemTags">  <#ERROR name="ItemTags">				    
+            <textarea id="ItemTags" name="ItemTags" tabindex="10" rows="4" style="width: 100%;"><#ITEM field="Tags" TagType="Instructor"/></textarea><br />
+	    </label>
+        <span class="note"><b></b>Comma separated list of tags to be assigned to this Item</b></span>			
+    </div>
 </div>
 
 <div class="line">

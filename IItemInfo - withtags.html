@@ -1,0 +1,83 @@
+<#INCLUDE filename="include_header.html">	
+<#INCLUDE filename="include_menu.html">	
+
+<script>
+var sessionid = '<#PARAM name="SessionID"/>';
+</script>
+
+<div class="line">
+<div class="span2of4 unit left" style="padding:0;">
+<a href="<#ACTION action="10" form="60" valueType="Lookup" Value="CourseID">" style="text-decoration: underline;display:block;margin-bottom:1em;">&laquo; Back to <#COURSE field="CourseNumber"> - <#COURSE field="Name"></a>
+</div>
+<div class="span1 unit left lastUnit" style="padding:0;">
+<style>
+#edit-item-button a { color: #333 !important; }
+#view-item-button a { color: #333 !important; }
+</style>
+<span class="lib-button-small-grey right" id="edit-item-button" style="margin-bottom: .5em; margin-right:  .5em;"><#ITEM field="BuildEditURL" NewWindow="False" alt="Edit this item" linkText="Edit Item"></span>
+<span class="lib-button-small-grey right" id="view-item-button" style="margin-bottom: 0; margin-right: .5em;"><#ITEM field="BuildURL" NewWindow="True" alt="View this item" linkText="View this item" footerText=""></span>
+</div>
+</div>
+
+<div class="line">
+<div class="span1 unit">
+    <h4>Item Tags:</h4>
+    				<form action="ares.dll" method="post" name="ItemTags" class="f-wrap-request">
+				        <input type="hidden" name="SessionID" value="<#PARAM name="SessionID">">
+					    <input type="hidden" name="ItemID" value="<#ITEM field="ItemID"/>">
+				        <input type="hidden" name="Action" value="11"/>
+				        <input type="hidden" name="Type" value="450"/>
+					    <label for="ItemTags">  <#ERROR name="ItemTags">				    
+			                	    <textarea id="ItemTags" name="ItemTags" tabindex="10" rows="4" style="width: 100%;"><#ITEM field="Tags" TagType="Instructor"/></textarea><br />
+			                    </label>
+                        <span class="note"><b></b>Comma separated list of tags to be assigned to this Item</b></span>
+					    </br><input class="lib-button-small-grey" style="margin-bottom: 0; margin-right: .5em; margin-top: .7em;" type="submit" value="ModifyTags">
+
+					</form>
+</div>
+<div class="span1 unit">
+<h4>Item Details:</h4>
+
+<p style="font-size:1.3em;"><#ITEM field="Icon" headerText="<span style="float: left; margin: 0 .7em 1em 0;">" footerText="</span>" /><#ITEM field="Author" footerText=". " /><#ITEM field="PubDate" headerText="(" footerText="). " /><#ITEM field="JournalYear" headerText="(" footerText="). " /><#ITEM field="ArticleTitle" headerText="&#8220;" footerText=".&#8221; " /><#ITEM field="Title" headerText="<i>" footerText="</i>. " /><#ITEM field="PubPlace" footerText=": " /><#ITEM field="Publisher" footerText=". " /><#ITEM field="Pages" headerText="pp." footerText=". " /></p>
+<p style="font-size:1.3em;"><#ITEM field="CurrentStatus" headerText="<b>Current Processing Status:</b> " /> <#ITEM field="ReasonForCancellation" headetText=" : "/></p>
+
+
+<#ITEM field="ShelfLocation" headerText="<p><strong>Location:</strong> " footerText="</p>" />
+				
+<#ITEM field="WorldcatLink" linkText="<img src='images/worldcat.gif' height='16' width=16' alt='Worldcat Logo' title='Get more information from OCLC Open Worldcat'/> Get more information" headerText="<br/>">
+				
+										
+
+<div class="lib-table instructor-table-nohover">
+<#TABLE class="instructor-table-nohover" name="ItemNotes" headerText="Notes" noDataAction="ShowMessage" noDataMessage="No Notes" ExcludeNoteTypes="Staff">
+			<#TABLE class="instructor-table-nohover" name="ItemTracking" headerText="Tracking" noDataAction="ShowMessage" noDataMessage="No Tacking information" column="TrackingDateTime:Date" column="Status:Status">
+</div>
+</div>
+</div>
+
+<div class="line">
+<div class="span1 unit">
+<style>
+#item-delete-button a { color: red !important; }
+</style>
+<span class="lib-button-small-grey right" id="item-delete-button"><#ITEM field="BuildDeleteURL" NewWindow="False" alt="Delete item" linkText="Delete item" /></span>
+</div>
+</div>
+
+<script> /*quick hack to hide the button if no link is available */
+    window.onload=function(){
+    var cistatus = "<#ITEM field="CurrentStatus"/>"
+    var viewitemtext = "<#ITEM field="BuildURL" NewWindow="True" alt="View this item" linkText="View this item" footerText="">";
+    if (viewitemtext == "")
+        {
+            $("#view-item-button").hide();
+        }
+    if (viewitemtext == "" && cistatus == "Item Available on Electronic Reserves")
+        {
+            $("#view-item-button").hide();
+            alert("The document is missing or corrupt. Please notify reserves staff.");
+        }
+    }
+</script>
+
+<#INCLUDE filename="include_footer.html">
