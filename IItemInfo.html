@@ -27,7 +27,11 @@ var sessionid = '<#PARAM name="SessionID"/>';
 <p style="font-size:1.3em;"><#ITEM field="CurrentStatus" headerText="<b>Current Processing Status:</b> " /> <#ITEM field="ReasonForCancellation" headetText=" : "/></p>
 
 
-<#ITEM field="ShelfLocation" headerText="<p><strong>Location:</strong> " footerText="</p>" />
+<div id="printlocinfo">
+	<h4>Location Information:</h4>
+	<p style="font-size:1.3em;"><#ITEM field="CallNumber" headerText="Call Number: "footerText=". " /> </p>
+    <p style="font-size:1.3em;" id='pickuploc'><#ITEM field="pickuplocation" headerText="Pickup location is set to the " footerText=". " /><#ITEM field="LoanPeriodDescription" headerText="It circulates for <b>" footerText="</b>." /></p>
+</div>
 				
 <#ITEM field="WorldcatLink" linkText="<img src='images/worldcat.gif' height='16' width=16' alt='Worldcat Logo' title='Get more information from OCLC Open Worldcat'/> Get more information" headerText="<br/>">
 				
@@ -35,7 +39,7 @@ var sessionid = '<#PARAM name="SessionID"/>';
 
 <div class="lib-table instructor-table-nohover">
 <#TABLE class="instructor-table-nohover" name="ItemNotes" headerText="Notes" noDataAction="ShowMessage" noDataMessage="No Notes" ExcludeNoteTypes="Staff">
-			<#TABLE class="instructor-table-nohover" name="ItemTracking" headerText="Tracking" noDataAction="ShowMessage" noDataMessage="No Tacking information" column="TrackingDateTime:Date" column="Status:Status">
+			<#TABLE class="instructor-table-nohover" name="ItemTracking" headerText="Tracking" noDataAction="ShowMessage" noDataMessage="No Tracking information" column="TrackingDateTime:Date" column="Status:Status">
 </div>
 </div>
 </div>
@@ -49,8 +53,16 @@ var sessionid = '<#PARAM name="SessionID"/>';
 </div>
 </div>
 
-<script> /*quick hack to hide the button if no link is available */
+<script> /*quick hack to hide the button if no link is available, also, replace all of the location codes, in an ugly but good enough for now way*/
     window.onload=function(){
+    document.getElementById('pickuploc').innerHTML = document.getElementById('pickuploc').innerHTML.replace('BAS', 'Bass Library');
+    document.getElementById('pickuploc').innerHTML = document.getElementById('pickuploc').innerHTML.replace('BRBL', 'Beinecke Library');
+    document.getElementById('pickuploc').innerHTML = document.getElementById('pickuploc').innerHTML.replace('CLAS', 'Classics Library');
+    document.getElementById('pickuploc').innerHTML = document.getElementById('pickuploc').innerHTML.replace('CSSSI', 'Center for Science and Social Science Information');
+    document.getElementById('pickuploc').innerHTML = document.getElementById('pickuploc').innerHTML.replace('DIV', 'Divinity Library');
+    document.getElementById('pickuploc').innerHTML = document.getElementById('pickuploc').innerHTML.replace('HAAS', 'Haas Arts Library');
+    document.getElementById('pickuploc').innerHTML = document.getElementById('pickuploc').innerHTML.replace('MED', 'Medical Library');
+    document.getElementById('pickuploc').innerHTML = document.getElementById('pickuploc').innerHTML.replace('MUS', 'Music Library');
     var cistatus = "<#ITEM field="CurrentStatus"/>"
     var viewitemtext = "<#ITEM field="BuildURL" NewWindow="True" alt="View this item" linkText="View this item" footerText="">";
     if (viewitemtext == "")
